@@ -35,6 +35,8 @@ public class AtmTransformer implements ClassFileTransformer {
             return byteCode;
         }
 
+        CtClass.debugDump = "./dump";
+
         if (loader.equals(targetClassLoader)) {
             // LOGGER.info("[Agent] Transforming class MyAtm");
             System.out.println("[Agent] Transforming class MyAtm");
@@ -50,9 +52,9 @@ public class AtmTransformer implements ClassFileTransformer {
                 m.addLocalVariable("endTime", CtClass.longType);
                 m.addLocalVariable("opTime", CtClass.longType);
                 endBlock.append("endTime = System.currentTimeMillis();");
-                endBlock.append("opTime = (endTime-startTime)/1000;");
+                endBlock.append("opTime = endTime-startTime;");
 
-                endBlock.append("System.out.println(\"[Application Transformer] Withdrawal operation completed in:\" + opTime + \" seconds!\");");
+                endBlock.append("System.out.println(\"[Application Transformer] Withdrawal operation completed in:\" + opTime + \" milliseconds!\");");
 
                 m.insertAfter(endBlock.toString());
 

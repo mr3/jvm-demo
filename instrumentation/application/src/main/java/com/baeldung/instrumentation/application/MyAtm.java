@@ -9,10 +9,9 @@ import org.slf4j.LoggerFactory;
 public class MyAtm {
     // private static Logger LOGGER = LoggerFactory.getLogger(MyAtm.class);
 
-    private static final int account = 10;
-
-    public static void withdrawMoney(int amount) throws InterruptedException {
-        Thread.sleep(2000L); //processing going on here
+    public static void withdrawMoney(long amount) throws InterruptedException {
+        Thread.sleep(amount); //processing going on here
+        System.out.println("------------------------------------------");
         System.out.printf("[Application] Successful Withdrawal of [%d] units!%n", amount);
 
     }

@@ -25,6 +25,7 @@ public class MyInstrumentationAgent {
     }
 
     private static void transformClass(String className, Instrumentation instrumentation) {
+        // CtClass.debugDump = MyInstrumentationAgent.class.getClassLoader().getResource("") + "./dump";
         Class<?> targetCls;
         ClassLoader targetClassLoader;
         // see if we can get the class using forName

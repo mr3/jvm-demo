@@ -23,7 +23,6 @@ public class AgentLoader {
         Optional<VirtualMachineDescriptor> jvmProcessOpt = VirtualMachine.list()
           .stream()
           .filter(jvm -> {
-              System.out.println(jvm.toString());
               return jvm.displayName().contains(applicationName);
           })
           .findFirst();
@@ -32,6 +31,8 @@ public class AgentLoader {
             System.out.println("Target Application not found");
             return;
         }
+        System.out.println(agentFilePath);
+        System.out.println(jvmProcessOpt.get().toString());
         File agentFile = new File(agentFilePath);
         try {
             String jvmPid = jvmProcessOpt.get().id();
